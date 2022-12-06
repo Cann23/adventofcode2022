@@ -24,6 +24,8 @@ public class RucksackReorganization {
 
         String result = common.toString();
 
+        result = result.substring(1,result.length()-1);
+        result = result.replace(", ","");
         return result;
 
     }
@@ -58,8 +60,7 @@ public class RucksackReorganization {
 
         while(scanner.hasNext()){
             String commonLetters = checkCompartments(scanner.next());
-            System.out.println(commonLetters.charAt(0));
-            System.out.println(commonLetters.charAt(1));
+            System.out.println(commonLetters);
         }
 
     }

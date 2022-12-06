@@ -8,9 +8,6 @@ public class RucksackReorganization {
         String strFirstHalf = str.substring(0, str.length()/2);
         String strSecondHalf = str.substring(str.length()/2,str.length());
 
-//        System.out.println(strFirstHalf);
-//        System.out.println(strSecondHalf);
-
         Set common = new HashSet();
         for(int k = 0; k < strFirstHalf.length(); k++){
             for( int j = 0; j < strSecondHalf.length(); j++){
@@ -20,7 +17,6 @@ public class RucksackReorganization {
             }
         }
 
-        System.out.println(common);
 
         String result = common.toString();
 
@@ -32,8 +28,10 @@ public class RucksackReorganization {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        File file = new File("/home/e2309755/Intellij/adventofcode/adventofcode/day3/src/input.txt");
+        File file = new File("/home/e2309755/Intellij/adventofcode/adventofcode/day3/src/input2.txt");
         Scanner scanner = new Scanner(file);
+
+        int sumOfPriorities = 0;
 
         Map<Character, Integer> lowerCase = new HashMap<>();
         Map<Character, Integer> upperCase = new HashMap<>();
@@ -52,16 +50,29 @@ public class RucksackReorganization {
             value2++;
         }
 
-//        for(Map.Entry<Character, Integer> element : lowerCase.entrySet()){
-//            Character c = element.getKey();
-//            Integer val = element.getValue();
-//            System.out.println("Key: " + c + " Val: " + val);
-//        }
-
         while(scanner.hasNext()){
             String commonLetters = checkCompartments(scanner.next());
-            System.out.println(commonLetters);
+
+            for(int size = 0; size < commonLetters.length(); size++){
+                for(Map.Entry<Character, Integer> element : lowerCase.entrySet()){
+                    Character c = element.getKey();
+                    Integer val = element.getValue();
+
+                    if(c == commonLetters.charAt(size)){
+                        sumOfPriorities += val;
+                    }
+                }
+                for(Map.Entry<Character, Integer> element : upperCase.entrySet()){
+                    Character c = element.getKey();
+                    Integer val = element.getValue();
+
+                    if(c == commonLetters.charAt(size)){
+                        sumOfPriorities += val;
+                    }
+                }
+            }
         }
+        System.out.println("sumOfPriorities: " + sumOfPriorities);
 
     }
 }

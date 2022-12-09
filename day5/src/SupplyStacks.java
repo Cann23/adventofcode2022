@@ -10,7 +10,6 @@ public class SupplyStacks {
 
         ArrayList<String> lineList = new ArrayList<>();
         int stacks = 0;
-        int lineLength = 0; // line length according to stack number : (stackNumber * 3) + (stackNumber-1) - 1
         int lineNumber = 0;
         // parse Input
 
@@ -21,7 +20,6 @@ public class SupplyStacks {
                 break;
             }
             else if(line.charAt(1) == '1'){
-                lineLength = line.length();
                 char temp =  line.charAt(line.length()-1);
                 stacks = Character.getNumericValue(temp);
                 //System.out.println(stacks);
@@ -37,7 +35,7 @@ public class SupplyStacks {
 
         ArrayList<ArrayList<Character>> stacksLists = new ArrayList<>();
         for(int i = 0; i < stacks; i++){
-            stacksLists.add(new ArrayList<Character>());
+            stacksLists.add(new ArrayList<>());
         }
 
         // fill the stacks
@@ -71,8 +69,8 @@ public class SupplyStacks {
 
         ArrayList<String[]> parsedList = new ArrayList<>();
 
-        for(int i = 0; i < commandList.size(); i++){
-            String[] commandParsed = commandList.get(i).split(" ");
+        for (String s : commandList) {
+            String[] commandParsed = s.split(" ");
             parsedList.add(commandParsed);
         }
 

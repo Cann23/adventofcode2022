@@ -6,11 +6,24 @@ import java.util.Scanner;
 class Monkey{
     private String number;
     private String emptyLine;
+
     private String startingItems;
+
     private String operation;
     private String test;
     private String ifTrue;
     private String ifFalse;
+    private ArrayList<Integer> startingItemsNumbers = new ArrayList<>();
+
+    public void setStartingItemsNumbers(Integer value) {
+        this.startingItemsNumbers.add(value);
+    }
+
+    public String getStartingItems() {
+        return startingItems;
+    }
+
+
 
     public Monkey(String number, String emptyLine
             , String startingItems, String operation
@@ -42,6 +55,17 @@ public class MonkeyInTheMıddle {
                                         , scanner.nextLine());
 
             monkeys.add(monkey);
+        }
+
+        for(Monkey monkey : monkeys){
+            String[] numbers = monkey.getStartingItems().split(":");
+            String[] numberStringList = numbers[1].split(", ");
+            String[] trimmedNumberStringList = new String[numberStringList.length];
+
+            for(int i = 0; i < numberStringList.length; i++){
+                trimmedNumberStringList[i] = numberStringList[i].trim();
+                monkey.setStartingItemsNumbers(Integer.parseInt(trimmedNumberStringList[i]));
+            }
         }
 
         System.out.println("monkey");

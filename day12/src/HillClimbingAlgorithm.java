@@ -10,6 +10,11 @@ public class HillClimbingAlgorithm {
 
         ArrayList<String> lines = new ArrayList<>();
 
+        int sx = 0; // current position x
+        int sy = 0; // current position y
+        int ex = 0; // best signal x
+        int ey = 0; // best signal y
+
         // reading input
         while (scanner.hasNext()){
             String line = scanner.next();
@@ -23,8 +28,22 @@ public class HillClimbingAlgorithm {
         for(int i = 0; i < lines.size(); i++){
             for(int j = 0; j < lines.get(i).length(); j++){
                 grid[i][j] = lines.get(i).charAt(j);
+
+                if(grid[i][j] == 'S'){
+//                    System.out.println("i: " + i + " ||| j: " + j);
+                    sx = i;
+                    sy = j;
+                }
+
+                if(grid[i][j] == 'E'){
+//                    System.out.println("i: " + i + " ||| j: " + j);
+                    ex = i;
+                    ey = j;
+                }
             }
         }
+
+
 
         System.out.println('a' + 1 == 'b');
     }

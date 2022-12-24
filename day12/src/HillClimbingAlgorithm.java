@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class HillClimbingAlgorithm {
+
+    public static void calculate(char[][] grid, int startX, int startY, int endX, int endY, int gridX, int gridY){
+        //TODO: recursion
+    }
+
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File("/home/e2309755/Intellij/adventofcode/adventofcode/day12/src/input.txt");
         Scanner scanner = new Scanner(file);
@@ -14,6 +19,8 @@ public class HillClimbingAlgorithm {
         int sy = 0; // current position y
         int ex = 0; // best signal x
         int ey = 0; // best signal y
+        int currentX = 0;
+        int currentY = 0;
 
         // reading input
         while (scanner.hasNext()){
@@ -43,6 +50,10 @@ public class HillClimbingAlgorithm {
             }
         }
 
+        currentX = sx;
+        currentY = sy;
+
+        calculate(grid, sx, sy, ex, ey, lines.size(), lines.get(0).length());
 
 
         System.out.println('a' + 1 == 'b');

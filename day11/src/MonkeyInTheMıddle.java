@@ -1,14 +1,18 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class MonkeyInTheMıddle {
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("/home/e2309755/Intellij/adventofcode/adventofcode/day11/src/input.txt");
+        File file = new File("/home/e2309755/Intellij/adventofcode/adventofcode/day11/src/input2.txt");
         Scanner scanner = new Scanner(file);
 
         ArrayList<Monkey> monkeys = new ArrayList<>();
+
+        final int STUFF_SLINGING_SIMIAN_SHENANIGANS = 20;
 
         while (scanner.hasNext()){
             Monkey monkey = new Monkey(scanner.next() + scanner.next()
@@ -20,6 +24,11 @@ public class MonkeyInTheMıddle {
                                         , scanner.nextLine());
 
             monkeys.add(monkey);
+        }
+
+        ArrayList<Integer> inspectedItems = new ArrayList<>();
+        for(int i = 0; i < monkeys.size(); i++){
+            inspectedItems.add(0);
         }
 
         // parse
@@ -58,63 +67,69 @@ public class MonkeyInTheMıddle {
         }
 
         // game loop
-        for(Monkey monkey : monkeys){
-            for(int i = 0 ; i < monkey.getStartingItemsNumbers().size(); i++){
-                int itemWorryLevel = monkey.getStartingItemsNumbers().get(i);
-                int operatedValue = itemWorryLevel;
-                switch (monkey.getOperationChar()){
-                    case '-':
-                        if(monkey.getOperationValue() == -1){
-                            operatedValue -= operatedValue;
-                        }
-                        else{
-                            operatedValue -= monkey.getOperationValue();
-                        }
-                        break;
-                    case '+':
-                        if(monkey.getOperationValue() == -1){
-                            operatedValue += operatedValue;
-                        }
-                        else{
-                            operatedValue += monkey.getOperationValue();
-                        }
-                        break;
-                    case '*':
-                        if(monkey.getOperationValue() == -1){
-                            operatedValue *= operatedValue;
-                        }
-                        else{
-                            operatedValue *= monkey.getOperationValue();
-                        }
-                        break;
-                    case '/':
-                        if(monkey.getOperationValue() == -1){
-                            operatedValue /= operatedValue;
-                        }
-                        else{
-                            operatedValue /= monkey.getOperationValue();
-                        }
-                        break;
+        for(int round = 0; round < STUFF_SLINGING_SIMIAN_SHENANIGANS; round++){
+            for(Monkey monkey : monkeys){
+                for(int i = 0 ; i < monkey.getStartingItemsNumbers().size(); i++){
+                    int itemWorryLevel = monkey.getStartingItemsNumbers().get(i);
+                    int operatedValue = itemWorryLevel;
+                    switch (monkey.getOperationChar()){
+                        case '-':
+                            if(monkey.getOperationValue() == -1){
+                                operatedValue -= operatedValue;
+                            }
+                            else{
+                                operatedValue -= monkey.getOperationValue();
+                            }
+                            break;
+                        case '+':
+                            if(monkey.getOperationValue() == -1){
+                                operatedValue += operatedValue;
+                            }
+                            else{
+                                operatedValue += monkey.getOperationValue();
+                            }
+                            break;
+                        case '*':
+                            if(monkey.getOperationValue() == -1){
+                                operatedValue *= operatedValue;
+                            }
+                            else{
+                                operatedValue *= monkey.getOperationValue();
+                            }
+                            break;
+                        case '/':
+                            if(monkey.getOperationValue() == -1){
+                                operatedValue /= operatedValue;
+                            }
+                            else{
+                                operatedValue /= monkey.getOperationValue();
+                            }
+                            break;
+                    }
+
+                    // Monkey gets bored with item. Worry level is divided by 3
+                    operatedValue = Math.round(operatedValue / 3);
+
+                    // whether Current worry level TEST field
+                    if(operatedValue % monkey.getTestValue() == 0){
+                        // ifTrue
+                        monkeys.get(monkey.getIfTrueValue()).setStartingItemsNumbers(operatedValue);
+                    }
+                    else{
+                        // ifFalse
+                        monkeys.get(monkey.getIfFalseValue()).setStartingItemsNumbers(operatedValue);
+                    }
                 }
 
-                // Monkey gets bored with item. Worry level is divided by 3
-                operatedValue = Math.round(operatedValue / 3);
-
-                // whether Current worry level TEST field
-                if(operatedValue % monkey.getTestValue() == 0){
-                    // ifTrue
-                    monkeys.get(monkey.getIfTrueValue()).setStartingItemsNumbers(operatedValue);
-                }
-                else{
-                    // ifFalse
-                    monkeys.get(monkey.getIfFalseValue()).setStartingItemsNumbers(operatedValue);
-                }
+                int inspectedIndex = Character.getNumericValue(monkey.getNumber().charAt(6));
+                inspectedItems.set(inspectedIndex, inspectedItems.get(inspectedIndex) + monkey.getStartingItemsNumbers().size());
+                monkey.clearStartingItemNumbers();
             }
-            monkey.clearStartingItemNumbers();
         }
 
-
-
-        System.out.println("monkey");
+        // two most active monkey
+        Collections.sort(inspectedItems);
+        System.out.println("Find max 2 element: " + inspectedItems.get(inspectedItems.size() - 1) + " : " + inspectedItems.get(inspectedItems.size() - 2));
+        System.out.println("monkey business --> " + inspectedItems.get(inspectedItems.size() - 1) * inspectedItems.get(inspectedItems.size() - 2));
     }
 }

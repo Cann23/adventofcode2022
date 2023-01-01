@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 public class Monkey{
+    public String getNumber() {
+        return number;
+    }
+
     private String number;
     private String emptyLine;
 

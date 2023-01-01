@@ -7,12 +7,42 @@ public class Monkey{
 
     private String operation;
     private String test;
+
     private String ifTrue;
     private String ifFalse;
     private ArrayList<Integer> startingItemsNumbers = new ArrayList<>();
 
     private Character operationChar;
     private int operationValue;
+
+    private int testValue;
+
+    private int ifTrueValue;
+    private int ifFalseValue;
+
+    public int getIfTrueValue() {
+        return ifTrueValue;
+    }
+
+    public void setIfTrueValue(int ifTrueValue) {
+        this.ifTrueValue = ifTrueValue;
+    }
+
+    public int getIfFalseValue() {
+        return ifFalseValue;
+    }
+
+    public void setIfFalseValue(int ifFalseValue) {
+        this.ifFalseValue = ifFalseValue;
+    }
+
+    public int getTestValue() {
+        return testValue;
+    }
+
+    public void setTestValue(int testValue) {
+        this.testValue = testValue;
+    }
 
     public Character getOperationChar() {
         return operationChar;
@@ -30,8 +60,32 @@ public class Monkey{
         this.operationValue = operationValue;
     }
 
+    public String getIfTrue() {
+        return ifTrue;
+    }
+
+    public void setIfTrue(String ifTrue) {
+        this.ifTrue = ifTrue;
+    }
+
+    public String getIfFalse() {
+        return ifFalse;
+    }
+
+    public void setIfFalse(String ifFalse) {
+        this.ifFalse = ifFalse;
+    }
+
     public void setStartingItemsNumbers(Integer value) {
         this.startingItemsNumbers.add(value);
+    }
+
+    public void clearStartingItemNumbers(){
+        this.startingItemsNumbers.clear();
+    }
+
+    public String getTest() {
+        return test;
     }
 
     public ArrayList<Integer> getStartingItemsNumbers() {

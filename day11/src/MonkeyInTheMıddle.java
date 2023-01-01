@@ -37,10 +37,81 @@ public class MonkeyInTheMıddle {
             // parse operation
             String[] operations = monkey.getOperation().split(" ");
             monkey.setOperationChar(operations[operations.length - 2].charAt(0));
-            monkey.setOperationValue(Integer.parseInt(operations[operations.length - 1]));
+            if(operations[operations.length - 1].equals("old")){
+                monkey.setOperationValue(-1);
+            }
+            else{
+                monkey.setOperationValue(Integer.parseInt(operations[operations.length - 1]));
+            }
+
+            // parse test
+            String[] tests = monkey.getTest().split(" ");
+            monkey.setTestValue(Integer.parseInt(tests[tests.length - 1]));
+
+            // parse ifTrue
+            String[] ifTrues = monkey.getIfTrue().split(" ");
+            monkey.setIfTrueValue(Integer.parseInt(ifTrues[ifTrues.length - 1]));
+
+            // parse ifFalse
+            String[] ifFalses = monkey.getIfFalse().split(" ");
+            monkey.setIfFalseValue(Integer.parseInt(ifFalses[ifFalses.length - 1]));
         }
 
-        // TODO: game loop
+        // game loop
+        for(Monkey monkey : monkeys){
+            for(int i = 0 ; i < monkey.getStartingItemsNumbers().size(); i++){
+                int itemWorryLevel = monkey.getStartingItemsNumbers().get(i);
+                int operatedValue = itemWorryLevel;
+                switch (monkey.getOperationChar()){
+                    case '-':
+                        if(monkey.getOperationValue() == -1){
+                            operatedValue -= operatedValue;
+                        }
+                        else{
+                            operatedValue -= monkey.getOperationValue();
+                        }
+                        break;
+                    case '+':
+                        if(monkey.getOperationValue() == -1){
+                            operatedValue += operatedValue;
+                        }
+                        else{
+                            operatedValue += monkey.getOperationValue();
+                        }
+                        break;
+                    case '*':
+                        if(monkey.getOperationValue() == -1){
+                            operatedValue *= operatedValue;
+                        }
+                        else{
+                            operatedValue *= monkey.getOperationValue();
+                        }
+                        break;
+                    case '/':
+                        if(monkey.getOperationValue() == -1){
+                            operatedValue /= operatedValue;
+                        }
+                        else{
+                            operatedValue /= monkey.getOperationValue();
+                        }
+                        break;
+                }
+
+                // Monkey gets bored with item. Worry level is divided by 3
+                operatedValue = Math.round(operatedValue / 3);
+
+                // whether Current worry level TEST field
+                if(operatedValue % monkey.getTestValue() == 0){
+                    // ifTrue
+                    monkeys.get(monkey.getIfTrueValue()).setStartingItemsNumbers(operatedValue);
+                }
+                else{
+                    // ifFalse
+                    monkeys.get(monkey.getIfFalseValue()).setStartingItemsNumbers(operatedValue);
+                }
+            }
+            monkey.clearStartingItemNumbers();
+        }
 
 
 

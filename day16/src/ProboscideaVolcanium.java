@@ -11,6 +11,10 @@ public class ProboscideaVolcanium {
 
         ArrayList<Valves> valves = new ArrayList<>();
 
+        int minute = 0;
+        String currentValve = "AA";
+
+        // parsing input
         while(scanner.hasNext()){
             String temp = scanner.nextLine();
 
@@ -25,6 +29,12 @@ public class ProboscideaVolcanium {
             Valves valve = new Valves(words[1], Integer.parseInt(rate), leadToValves);
             valves.add(valve);
 
+        }
+
+        // Game loop
+        while(minute <= 30){
+
+            minute++;
         }
 
         System.out.println("hello !!!");

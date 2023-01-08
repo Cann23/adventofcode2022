@@ -17,7 +17,18 @@ public class NoSpaceLeftOnDevice {
             stringArrayList.add(scanner.nextLine());
         }
 
+        // creating root folder
+        Folder root = new Folder();
+        root.setNodeName("/");
+        root.setParentFolder(null);
+        root.setSize(0);
 
+        Folder currentNode= root;
+        // command by command
+        for(int i = 0; i < stringArrayList.size(); i++){
+            String[] command = stringArrayList.get(i).trim().split(" ");
+            System.out.println("fds");
+        }
 
 
         System.out.println("Hello World!");

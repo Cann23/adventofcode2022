@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Monkey {
     private String monkeyName;
     private boolean isSpecificNumber;
@@ -5,6 +7,10 @@ public class Monkey {
     private String firstOperant;
     private String secondOperant;
     private Character operator;
+
+    public Monkey(String monkeyName) {
+        this.monkeyName = monkeyName;
+    }
 
     public Monkey(String monkeyName, boolean isSpecificNumber, int specificNumber, String firstOperant, String secondOperant, Character operator) {
         this.monkeyName = monkeyName;
@@ -61,5 +67,24 @@ public class Monkey {
 
     public void setOperator(Character operator) {
         this.operator = operator;
+    }
+
+    public int findNumberGivenMonkeyNameAndMonkeysList(String monkeyName, ArrayList<Monkey> monkeys){
+        for(int i = 0; i < monkeys.size(); i++){
+            if(monkeys.get(i).getMonkeyName().equals(monkeyName)){
+                return monkeys.get(i).getSpecificNumber();
+            }
+        }
+
+        return -1;
+    }
+
+    public boolean allMonkeysHasSpecificNumber(ArrayList<Monkey> monkeys){
+        for(int i = 0; i < monkeys.size(); i++){
+            if(monkeys.get(i).getSpecificNumber() == -1){
+                return false;
+            }
+        }
+        return true;
     }
 }

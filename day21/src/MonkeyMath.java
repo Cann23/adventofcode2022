@@ -57,9 +57,45 @@ public class MonkeyMath {
                         null,
                         null));
             }
-
-            System.out.println("MonkeyMath");
         }
 
+        for(Monkey monkeyCycle : monkeys) {
+            if(monkeyCycle.allMonkeysHasSpecificNumber(monkeys)){
+                break;
+            }
+
+            for (Monkey monkey : monkeys) {
+                if (!monkey.isSpecificNumber()) {
+                    int a = monkey.findNumberGivenMonkeyNameAndMonkeysList(monkey.getFirstOperant(), monkeys);
+                    int b = monkey.findNumberGivenMonkeyNameAndMonkeysList(monkey.getSecondOperant(), monkeys);
+
+                    if (a != -1 && b != -1) {
+                        switch (monkey.getOperator()) {
+                            case '-':
+                                monkey.setSpecificNumber(a - b);
+                                break;
+                            case '+':
+                                monkey.setSpecificNumber(a + b);
+                                break;
+                            case '/':
+                                monkey.setSpecificNumber(a / b);
+                                break;
+                            case '*':
+                                monkey.setSpecificNumber(a * b);
+                                break;
+                        }
+                    }
+                }
+                System.out.println(monkey.getMonkeyName() + "-->" + monkey.getSpecificNumber());
+            }
+            System.out.println("------------------------------------------------------------");
+        }
+
+        for(Monkey m : monkeys){
+            if(m.getMonkeyName().equals("root")){
+                System.out.println("The specific number of root : " + m.getSpecificNumber());
+                break;
+            }
+        }
     }
 }

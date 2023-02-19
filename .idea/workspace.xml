@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c8460517-f779-4812-958d-17f488f357ad" name="Changes" comment="" />
+    <list default="true" id="c8460517-f779-4812-958d-17f488f357ad" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/day20/src/GrovePositioningSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/day20/src/GrovePositioningSystem.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2ISZJvV2I4b8be6Cfg4Ezyl1b1D" />
   <component name="ProjectViewState">
@@ -16,7 +21,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/day7" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -28,6 +36,7 @@
       <option name="presentableId" value="Default" />
       <updated>1670176880054</updated>
       <workItem from="1670176881104" duration="73000" />
+      <workItem from="1676800872724" duration="128000" />
     </task>
     <servers />
   </component>

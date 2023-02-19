@@ -14,17 +14,56 @@ public class GrovePositioningSystem {
         return -1;
     }
 
+    public static void lookingNumbers(int tempIndex, ArrayList<Integer> list){
+        int _1000th = (tempIndex + 1000) % list.size();
+        int _2000th = (tempIndex + 2000) % list.size();
+        int _3000th = (tempIndex + 3000) % list.size();
+
+        System.out.println("1000: " + _1000th);
+        System.out.println("2000: " + _2000th);
+        System.out.println("3000: " + _3000th);
+        System.out.println("The result: " + (_1000th + _2000th + _3000th));
+    }
+
     public static ArrayList<Integer> decrypting(int value, int tempIndex, ArrayList<Integer> list){
         if(value > 0){
-            //TODO: out of size will be added
-            for(int i = 0; i < value; i++){
-                int tempValue = list.get(tempIndex);
-                list.set(tempIndex, list.get(tempIndex + 1));
-                list.set(tempIndex + 1, tempValue);
-                tempIndex++;
+            if(tempIndex + value >= list.size()){
+                int modulo = tempIndex + value - list.size();
+                for(int i = 0; i < modulo; i++){
+                    int tempValue = list.get(tempIndex);
+                    list.set(tempIndex, list.get(tempIndex - 1));
+                    list.set(tempIndex - 1, tempValue);
+                    tempIndex--;
+                }
+            }
+            else{
+                for(int i = 0; i < value; i++){
+                    int tempValue = list.get(tempIndex);
+                    list.set(tempIndex, list.get(tempIndex + 1));
+                    list.set(tempIndex + 1, tempValue);
+                    tempIndex++;
+                }
             }
         }
-        // other cases will be added
+        else if(value < 0){
+            if(tempIndex < Math.abs(value)){
+                int modulo = list.size() - tempIndex - Math.abs(value);
+                for(int i = 0; i < modulo; i++){
+                    int tempValue = list.get(tempIndex);
+                    list.set(tempIndex, list.get(tempIndex + 1));
+                    list.set(tempIndex + 1, tempValue);
+                    tempIndex++;
+                }
+            }
+            else{
+                for(int i = 0; i < Math.abs(value); i++){
+                    int tempValue = list.get(tempIndex);
+                    list.set(tempIndex, list.get(tempIndex - 1));
+                    list.set(tempIndex - 1, tempValue);
+                    tempIndex--;
+                }
+            }
+        }
 
         return list;
     }
@@ -57,7 +96,9 @@ public class GrovePositioningSystem {
                 decrypting(element, tempIndex, currentCircularList);
             }
 
-
+            // find numbers after "zero"
+            int afterZero = findIndex(0, currentCircularList);
+            lookingNumbers(afterZero, currentCircularList);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
